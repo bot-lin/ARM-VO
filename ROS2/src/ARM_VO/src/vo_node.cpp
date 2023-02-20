@@ -10,7 +10,7 @@ ARM_VO_Node::ARM_VO_Node(const rclcpp::NodeOptions & options)
 
 }
 
-ARM_VO_Node::callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg) {
+void ARM_VO_Node::callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg) {
 
     cv::Mat curr_frame = cv_bridge::toCvShare(msg, "mono8")->image;
     if (!VO.initialized)
