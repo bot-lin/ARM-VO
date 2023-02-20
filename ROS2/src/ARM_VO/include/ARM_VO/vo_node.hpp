@@ -2,7 +2,7 @@
 #define ARM_VO_COMPONENT_HPP_
 
 #include "ARM_VO/visibility_control.h"
-#include "../../../include/ARM_VO.hpp"
+#include "../../../../include/ARM_VO.hpp"
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <geometry_msgs/msg/pose.hpp>
