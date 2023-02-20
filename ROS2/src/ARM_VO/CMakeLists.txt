@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.8)
 project(ARM_VO)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -O3 -std=c++11 -funroll-loops -Ofast")
+
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
@@ -39,9 +41,11 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 include_directories(include)
+file(GLOB SOURCES "src/vo_node.cpp" "../../src/*.cpp")
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../src/main.cpp)
 
 add_library(arm_vo_component SHARED
-  src/vo_node.cpp)
+  ${SOURCES})
 target_compile_definitions(arm_vo_component
   PRIVATE "ARM_VO_BUILDING_DLL")
 ament_target_dependencies(arm_vo_component
