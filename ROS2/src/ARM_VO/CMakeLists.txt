@@ -35,6 +35,7 @@ if(NOT OpenCV_FOUND)
     endif()
 endif()
 message(STATUS "Use OpenCV ${OpenCV_VERSION}")
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 if(NOT TARGET OpenMP::OpenMP_CXX)
     add_library(OpenMP_TARGET INTERFACE)
@@ -50,8 +51,7 @@ endif()
 # find_package(<dependency> REQUIRED)
 set(armvo_Include /ARM-VO/include/)
 
-include_directories(include 
-                    ${OpenCV_INCLUDE_DIRS})
+include_directories(include)
 # file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
 file(GLOB SOURCES "src/vo_node.cpp")
 # list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
