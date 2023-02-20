@@ -16,11 +16,13 @@ public:
     ARM_VO_PUBLIC
     explicit ARM_VO_Node(const rclcpp::NodeOptions & options);
 private:
+    void callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg);
     ARM_VO VO;
     void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg);
     rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr pose_pub_;
     image_transport::Subscriber sub_;
     rmw_qos_profile_t custom_qos_;
+    std::shared_ptr<rclcpp::Node> node_;
 
 
 };
