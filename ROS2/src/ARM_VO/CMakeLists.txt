@@ -22,6 +22,18 @@ find_package(rclcpp_components REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(image_transport REQUIRED)
+find_package(cv_bridge REQUIRED)
+
+# OpenCV
+find_package(OpenCV 3.3.1 QUIET)
+if(NOT OpenCV_FOUND)
+    find_package(OpenCV 4.0)
+    if(NOT OpenCV_FOUND)
+        message(FATAL_ERROR "OpenCV >= 3.3.1 not found")
+    endif()
+endif()
+message(STATUS "Use OpenCV ${OpenCV_VERSION}")
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -36,7 +48,10 @@ ament_target_dependencies(arm_vo_component
   rclcpp 
   rclcpp_components
   sensor_msgs 
-  image_transport) 
+  image_transport
+  cv_bridge
+  OpenCV
+  ) 
 rclcpp_components_register_nodes(arm_vo_component "ARM_VO_Node")
 set(node_plugins "${node_plugins}ARM_VO_Node;$<TARGET_FILE:arm_vo_component>\n")
 
