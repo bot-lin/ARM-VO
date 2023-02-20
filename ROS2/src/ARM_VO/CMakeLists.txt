@@ -49,7 +49,11 @@ endif()
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-include_directories(include "/ARM-VO/include")
+set(armvo_Include /ARM-VO/include/)
+
+include_directories(include 
+                    ${armvo_Include}
+                    ${OpenCV_INCLUDE_DIRS})
 # file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
 file(GLOB SOURCES "src/vo_node.cpp")
 # list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
