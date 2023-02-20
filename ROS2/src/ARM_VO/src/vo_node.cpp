@@ -94,3 +94,6 @@ void getQuaternion(const cv::Mat& R, float Q[])
         Q[k] = (R.at<float>(k,i) + R.at<float>(i,k)) * s;
     }
 }
+
+#include "rclcpp_components/register_node_macro.hpp"
+RCLCPP_COMPONENTS_REGISTER_NODE(ARM_VO_Node)
