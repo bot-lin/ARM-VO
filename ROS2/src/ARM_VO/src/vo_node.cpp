@@ -29,7 +29,7 @@ void ARM_VO_Node::callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg) {
         float quat[4];
         getQuaternion(VO.R_f, quat);
 
-        geometry_msgs::Pose pose_msg;
+        geometry_msgs::msg::Pose pose_msg;
         pose_msg.position.x = VO.t_f.at<float>(0);
         pose_msg.position.y = VO.t_f.at<float>(1);
         pose_msg.position.z = VO.t_f.at<float>(2);
@@ -40,28 +40,28 @@ void ARM_VO_Node::callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg) {
 
         posePublisher.publish(pose_msg);
 
-        Results.show(curr_frame, VO.prev_inliers, VO.curr_inliers, FPS, VO.t_f);
+        // Results.show(curr_frame, VO.prev_inliers, VO.curr_inliers, FPS, VO.t_f);
     }
     //////
 
-    if (camera_optical_frame_.empty()) {
-        camera_optical_frame_ = msg->header.frame_id;
-    }
-    const rclcpp::Time tp_1 = node_->now();
-    const double timestamp = tp_1.seconds();
+    // if (camera_optical_frame_.empty()) {
+    //     camera_optical_frame_ = msg->header.frame_id;
+    // }
+    // const rclcpp::Time tp_1 = node_->now();
+    // const double timestamp = tp_1.seconds();
 
-    // input the current frame and estimate the camera pose
-    auto cam_pose_wc = slam_->feed_monocular_frame(cv_bridge::toCvShare(msg)->image, timestamp, mask_);
+    // // input the current frame and estimate the camera pose
+    // auto cam_pose_wc = slam_->feed_monocular_frame(cv_bridge::toCvShare(msg)->image, timestamp, mask_);
 
-    const rclcpp::Time tp_2 = node_->now();
-    const double track_time = (tp_2 - tp_1).seconds();
+    // const rclcpp::Time tp_2 = node_->now();
+    // const double track_time = (tp_2 - tp_1).seconds();
 
-    //track times in seconds
-    track_times_.push_back(track_time);
+    // //track times in seconds
+    // track_times_.push_back(track_time);
 
-    if (cam_pose_wc) {
-        publish_pose(*cam_pose_wc, msg->header.stamp);
-    }
+    // if (cam_pose_wc) {
+    //     publish_pose(*cam_pose_wc, msg->header.stamp);
+    // }
 }
 
 // -------------------------------------------------------------------------------------

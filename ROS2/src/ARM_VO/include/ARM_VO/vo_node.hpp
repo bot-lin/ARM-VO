@@ -7,6 +7,8 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <geometry_msgs/msg/pose.hpp>
 #include <image_transport/image_transport.hpp>
+#include <cv_bridge/cv_bridge.h>
+
 
 void getQuaternion(const cv::Mat& R, float Q[]);
 
