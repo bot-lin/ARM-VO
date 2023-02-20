@@ -37,12 +37,22 @@ endif()
 message(STATUS "Use OpenCV ${OpenCV_VERSION}")
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+if(NOT TARGET OpenMP::OpenMP_CXX)
+    add_library(OpenMP_TARGET INTERFACE)
+    add_library(OpenMP::OpenMP_CXX ALIAS OpenMP_TARGET)
+    target_compile_options(OpenMP_TARGET INTERFACE ${OpenMP_CXX_FLAGS})
+    find_package(Threads REQUIRED)
+    target_link_libraries(OpenMP_TARGET INTERFACE Threads::Threads)
+    target_link_libraries(OpenMP_TARGET INTERFACE ${OpenMP_CXX_FLAGS})
+endif()
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-include_directories(include "/ARM-VO/include")
-file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
-list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
+#include_directories(include "/ARM-VO/include")
+# file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
+file(GLOB SOURCES "src/vo_node.cpp")
+# list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
 
 add_library(arm_vo_component SHARED
   ${SOURCES})
