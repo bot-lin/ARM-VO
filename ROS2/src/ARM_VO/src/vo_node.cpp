@@ -1,7 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "ARM_VO/vo_node.hpp"
 
-ARM_VO_Node::ARM_VO_Node(const rclcpp::NodeOptions & options, constc std::string& paramsFileName)
+ARM_VO_Node::ARM_VO_Node(const rclcpp::NodeOptions & options)
 : Node("vo_node", options)
 {
   sub_ = image_transport::create_subscription(

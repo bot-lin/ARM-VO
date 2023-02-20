@@ -14,7 +14,7 @@ class ARM_VO_Node : public rclcpp::Node
 {
 public:
     ARM_VO_PUBLIC
-    explicit ARM_VO_Node(onst rclcpp::NodeOptions & options, const std::string& paramsFileName);
+    explicit ARM_VO_Node(const rclcpp::NodeOptions & options);
 private:
     ARM_VO VO;
     void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg);
