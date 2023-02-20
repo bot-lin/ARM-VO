@@ -51,7 +51,6 @@ endif()
 set(armvo_Include /ARM-VO/include/)
 
 include_directories(include 
-                    ${armvo_Include}
                     ${OpenCV_INCLUDE_DIRS})
 # file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
 file(GLOB SOURCES "src/vo_node.cpp")
