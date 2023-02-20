@@ -40,7 +40,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-include_directories(include)
+include_directories(include "../../../include")
 file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
 
