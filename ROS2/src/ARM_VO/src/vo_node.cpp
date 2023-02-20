@@ -38,7 +38,7 @@ void ARM_VO_Node::callback(const sensor_msgs::msg::Image::ConstSharedPtr& msg) {
         pose_msg.orientation.z = quat[2];
         pose_msg.orientation.w = quat[3];
 
-        posePublisher.publish(pose_msg);
+        // posePublisher.publish(pose_msg);
 
         // Results.show(curr_frame, VO.prev_inliers, VO.curr_inliers, FPS, VO.t_f);
     }
