@@ -5,7 +5,9 @@ ARM_VO_Node::ARM_VO_Node(const rclcpp::NodeOptions & options)
 : Node("vo_node", options),
     node_(std::make_shared<rclcpp::Node>("arm_vo"))
 {
-  sub_ = image_transport::create_subscription(
+    std::string filename =  this->declare_parameter("config_file", "/data/arm_vo.yaml");
+    VO.loadSetting(filename);   
+    sub_ = image_transport::create_subscription(
         node_.get(), "camera/image_raw", [this](const sensor_msgs::msg::Image::ConstSharedPtr& msg) { callback(msg); }, "raw", custom_qos_);
 
 }
