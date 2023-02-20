@@ -50,11 +50,12 @@ endif()
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 set(armvo_Include /ARM-VO/include/)
+include_directories(${armvo_Include})
 
 include_directories(include)
-# file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
-file(GLOB SOURCES "src/vo_node.cpp")
-# list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
+file(GLOB SOURCES "src/vo_node.cpp" "../../../src/*.cpp")
+# file(GLOB SOURCES "src/vo_node.cpp")
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/main.cpp)
 
 add_library(arm_vo_component SHARED
   ${SOURCES})
