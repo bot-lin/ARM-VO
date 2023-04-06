@@ -27,4 +27,4 @@ include_directories(include)
 
 file(GLOB SOURCES "src/*.cpp")
 add_executable(ARM_VO ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} depthai::opencv)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${OpenCV_LIBS} depthai::opencv)
